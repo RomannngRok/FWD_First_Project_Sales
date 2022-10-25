@@ -1,5 +1,7 @@
 package view;
 
+import java.awt.event.ActionListener;
+
 public class SIGFrame extends javax.swing.JFrame {
 
     /**
@@ -54,7 +56,7 @@ public class SIGFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(headerTable);
 
-        jLabel1.setText("InvoiceNum");
+        jLabel1.setText("Invoice Num");
 
         jLabel2.setText("Customer Name");
 
@@ -162,7 +164,7 @@ public class SIGFrame extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addComponent(invCustLbl))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(invDateLbl))
                         .addGap(18, 18, 18)
@@ -248,4 +250,8 @@ public class SIGFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem loadMenuItem;
     private javax.swing.JMenuItem saveMenuItem;
     // End of variables declaration//GEN-END:variables
+
+    ActionListener getController() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
