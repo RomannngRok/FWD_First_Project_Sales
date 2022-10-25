@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class InvoiceDialog extends DefaultTableModel {
 
-    private final String[] columnNames = { "Invoice ID", "Date", "Amount", "Total" };
+    private final String[] columnNames = { "Invoice ID", "Date", "Customer", "Total" };
     private ArrayList<InvoiceHeader> rows ;
 
     public ArrayList<InvoiceHeader> getRows() {

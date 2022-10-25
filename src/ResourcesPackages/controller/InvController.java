@@ -23,7 +23,7 @@ public class InvController extends JFrame implements ActionListener, ListSelecti
 
     private final ArrayList<String[]> Rs = new ArrayList<>();
     private final ArrayList<String[]> ItemsRs = new ArrayList<>();
-    private final String[] columnNames = { "Invoice ID", "Date", "Amount", "Total" };
+    private final String[] columnNames = { "No.", "Date", "Customer", "Total" };
     private final String[] columnItemNames = { "Invoice ID", "Item Name", "Item Price", "Count" , " Total"};
 
     Boolean itemFileFull= false;
@@ -165,9 +165,20 @@ public class InvController extends JFrame implements ActionListener, ListSelecti
                 saveFile();
             }
         }));
-        newBtn.addActionListener(this);
-        saveBtn.addActionListener(this);
-        cancelBn.addActionListener(this);
+        newBtn.addActionListener((new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createNewInvoice();
+            }
+        }));
+        saveBtn.addActionListener((new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveFile();
+            }
+        }));
+        cancelBn.addActionListener((new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                getSelectedRowValues();}
+        }));
         deleteBtn.addActionListener(this);
 
 
@@ -298,7 +309,7 @@ public class InvController extends JFrame implements ActionListener, ListSelecti
                 DefaultTableModel headerRow= (DefaultTableModel)invoiceTable.getModel();
                 DefaultTableModel invoiceRow= (DefaultTableModel)itemTable.getModel();
 
-                headerRow.addRow(new Object[]{id, newDATE,name1});
+                headerRow.addRow(new Object[]{id, newDATE,name1,total});
                 invoiceRow.addRow(new Object[]{id, itemName,itemPrice,count,total});
                 JOptionPane.showMessageDialog(this, "New row is added Successfully to invoice Header AND lines Tables ",
                         " Success.. ", JOptionPane.INFORMATION_MESSAGE);
@@ -547,10 +558,12 @@ public class InvController extends JFrame implements ActionListener, ListSelecti
         String headers = "";
         String lines = "";
         for (InvoiceHeader invoice : Invoices) {
+
             String invoiceCSV = invoice.getInvoiceID() + "," + invoice.getDate() +"," + invoice.getCustomerName();
             headers += invoiceCSV;
             headers += "\n";
 
+            //System.out.println(invoice.getItem());
             for (InvoiceLine line : invoice.getItem()) {
                 String lineCSV = line.getInvoiceID()+ "," + line.getItemName() +"," +line.getItemPrice()+"," + line.getItemCount();;
                 lines += lineCSV;
